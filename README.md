@@ -5,7 +5,7 @@
 
 ### Interactive Hexlet Chat:
 
-**Whatch demo of project on:** https://chatreacthexlet.herokuapp.com/
+**Whatch demo of project on:** [CHAT](https://chatreacthexlet.herokuapp.com/)
 
 ### Install
 ```
