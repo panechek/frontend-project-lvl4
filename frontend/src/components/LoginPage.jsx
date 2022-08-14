@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { isEmptyArray, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
 import useAuth from '../hooks/index.jsx';
-// import _ from 'lodash';
+import routes from '../routes.js';
 
 const LoginPage = () => {
   const auth = useAuth();
@@ -17,35 +17,36 @@ const LoginPage = () => {
     inputRef.current.focus();
   }, []);
 
-  const schema = yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().required().min(6),
-  });
-
-  const validate = (fields) => {
-    try {
-      schema.validateSync(fields);
-      return {};
-    } catch (e) {
-      return e.inner;
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
+    validationSchema: yup.object().shape({
+      username: yup.string().required('Заполните это поле'),
+      password: yup.string().required('Заполните это поле'),
+    }),
     onSubmit: async (values) => {
       setAuthFAiled(false);
-      const validateResult = validate(values);
-      if (Object.keys(validateResult).length === 0) {
+      console.log(values);
+      try {
+        const res = await axios.post(routes.loginPath(), values);
         console.log('ok');
-      } else {
-        console.log(validateResult);
+        localStorage.setItem('userId', JSON.stringify(res.data));
+        auth.logIn();
+        const { from } = location.state || { from: { pathname: '/' } };
+        navigate(from);
+      } catch (err) {
+        if (err.isAxiosError && err.response.status === 401) {
+          setAuthFAiled(true);
+          inputRef.current.select();
+          return;
+        }
+        throw err;
       }
     },
   });
+
   return (
     <div className="container-fluid h-100">
       <div className='row justify-content-center align-content-center h-100'>
@@ -90,7 +91,7 @@ const LoginPage = () => {
                                         required
                                     />
                                 </FloatingLabel>
-                                <Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid">
                                     Неверное имя пользователя или пароль
                                     </Form.Control.Feedback>
                             </Form.Group>
