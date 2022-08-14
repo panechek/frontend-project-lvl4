@@ -24,7 +24,7 @@ const Home = () => {
     fetchContent();
   }, []);
 
-  return content && <p>{content}</p>;
+  return content && <p>chat</p>;
 };
 
 export default Home;
