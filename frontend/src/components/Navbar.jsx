@@ -5,14 +5,14 @@ const AuthOutButton = () => {
   const auth = useAuth();
 
   return (
-    auth.loggedIn && <Button type="button" className="btn btn-primary" onClick={auth.logOut}>Выйти</Button>
+    auth.loggedIn && <Button type="button" onClick={auth.logOut}>Выйти</Button>
   );
 };
 
 const Navbar = () => (
-      <NavbarBootstrap expand="lg" className="shadow-sm bg-light">
+      <NavbarBootstrap expand="lg" className="shadow-sm bg-white">
         <div className='container'>
-        <NavbarBootstrap.Brand>Pan Chat</NavbarBootstrap.Brand>
+        <NavbarBootstrap.Brand href='/'>Pan Chat</NavbarBootstrap.Brand>
         <AuthOutButton />
         </div>
       </NavbarBootstrap>

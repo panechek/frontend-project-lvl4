@@ -30,7 +30,6 @@ const LoginPage = () => {
       setAuthFAiled(false);
       try {
         const res = await axios.post(routes.loginPath(), values);
-        console.log(res.data);
         localStorage.setItem('userId', JSON.stringify(res.data));
         auth.logIn();
         const { from } = location.state || { from: { pathname: '/' } };
@@ -45,12 +44,17 @@ const LoginPage = () => {
       }
     },
   });
+  // if (auth.loggedIn) {
+  //   const { from } = location.state || { from: { pathname: '/' } };
+  //   return navigate(from);
+  // }
 
   return (
     <div className="container-fluid h-100">
       <div className='row justify-content-center align-content-center h-100'>
         <div className='col-12 col-md-8 col-xxl-6'>
-          <div className='card-body row p-5'>
+          <div className='card shadow-sm'>
+            <div className='card-body row p-5'>
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <img src="../assets/avatar.jpg" className='rounded-circle' alt="Войти" />
               </div>
@@ -89,10 +93,10 @@ const LoginPage = () => {
                                         isInvalid={authFailed}
                                         required
                                     />
-                                </FloatingLabel>
-                                <Form.Control.Feedback type="invalid">
+                                <Form.Control.Feedback type="invalid" tooltip>
                                     Неверное имя пользователя или пароль
                                     </Form.Control.Feedback>
+                                    </FloatingLabel>
                             </Form.Group>
                             <Button type="submit" className='w-100 mb-3 btn btn-outline-primary' variant="outline-primary">Войти</Button>
                         </Form>
@@ -102,11 +106,12 @@ const LoginPage = () => {
                             <span>
                                 Нет аккаунта?
                             </span>
-                            <a href="/signup">Регистрация</a>
+                            <a href="/signup"> Регистрация</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
   );
 };
