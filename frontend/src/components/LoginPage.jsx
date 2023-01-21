@@ -4,8 +4,10 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
+import connectSocket from '../hooks/socket.io.js';
 import useAuth from '../hooks/index.jsx';
 import routes from '../routes.js';
+import avatarImg from '../assets/avatar.jpg';
 
 const LoginPage = () => {
   const auth = useAuth();
@@ -34,6 +36,7 @@ const LoginPage = () => {
         auth.logIn();
         const { from } = location.state || { from: { pathname: '/' } };
         navigate(from);
+        connectSocket();
       } catch (err) {
         if (err.isAxiosError && err.response.status === 401) {
           setAuthFAiled(true);
@@ -44,10 +47,6 @@ const LoginPage = () => {
       }
     },
   });
-  // if (auth.loggedIn) {
-  //   const { from } = location.state || { from: { pathname: '/' } };
-  //   return navigate(from);
-  // }
 
   return (
     <div className="container-fluid h-100">
@@ -56,7 +55,7 @@ const LoginPage = () => {
           <div className='card shadow-sm'>
             <div className='card-body row p-5'>
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="../assets/avatar.jpg" className='rounded-circle' alt="Войти" />
+                <img src={avatarImg} className='rounded-circle' alt="Войти" />
               </div>
               <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
                 <h1 className='test-center mb-4'>Войти</h1>
@@ -104,9 +103,8 @@ const LoginPage = () => {
                     <div className='card-footer p-4'>
                         <div className="text-center">
                             <span>
-                                Нет аккаунта?
+                                Нет аккаунта? <a href="/signup"> Регистрация</a>
                             </span>
-                            <a href="/signup"> Регистрация</a>
                         </div>
                     </div>
                 </div>

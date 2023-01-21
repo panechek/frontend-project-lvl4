@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import LoginPage from './LoginPage.jsx';
-import Home from './Home.jsx';
+import Home from './HomePage.jsx';
 import Navbar from './Navbar.jsx';
 import AuthContext from '../contexts/index.jsx';
 import useAuth from '../hooks/index.jsx';
@@ -35,7 +35,6 @@ const AuthProvider = ({ children }) => {
         setLoggedIn(false);
       }
     };
-    console.log('ds');
     return () => takeAuth();
   }, []);
   return (
@@ -52,7 +51,6 @@ const AuthProvider = ({ children }) => {
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
   const location = useLocation();
-  console.log(auth.loggedIn);
   return (
     auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />
   );

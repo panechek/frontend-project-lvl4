@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Oct  7 11:20:31 2022
+# Make data base, printed on Mon Nov 14 11:00:50 2022
 
 # Variables
 
@@ -31,7 +31,7 @@ CURDIR := /home/panechek/frontend-project-lvl4
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"82b10cd20de2ad093dc119a3bdaec56e.ru","_translationsConfigFile":"/home/panechek/.vscode-server/data/clp/82b10cd20de2ad093dc119a3bdaec56e.ru/tcf.json","_cacheRoot":"/home/panechek/.vscode-server/data/clp/82b10cd20de2ad093dc119a3bdaec56e.ru","_resolvedLanguagePackCoreLocation":"/home/panechek/.vscode-server/data/clp/82b10cd20de2ad093dc119a3bdaec56e.ru/64bbfbf67ada9953918d72e1df2f4d8e537d340e","_corruptedFile":"/home/panechek/.vscode-server/data/clp/82b10cd20de2ad093dc119a3bdaec56e.ru/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"c3ad4a8de2144a6025e839bdab2ae644.ru","_translationsConfigFile":"/home/panechek/.vscode-server/data/clp/c3ad4a8de2144a6025e839bdab2ae644.ru/tcf.json","_cacheRoot":"/home/panechek/.vscode-server/data/clp/c3ad4a8de2144a6025e839bdab2ae644.ru","_resolvedLanguagePackCoreLocation":"/home/panechek/.vscode-server/data/clp/c3ad4a8de2144a6025e839bdab2ae644.ru/6261075646f055b99068d3688932416f2346dd3b","_corruptedFile":"/home/panechek/.vscode-server/data/clp/c3ad4a8de2144a6025e839bdab2ae644.ru/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code/bin/code
 # makefile (from 'Makefile', line 1)
@@ -47,11 +47,11 @@ VSCODE_CWD = /mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/panechek/.vscode-server/bin/64bbfbf67ada9953918d72e1df2f4d8e537d340e/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu20.04LTS_2004.5.11.0_x64__79rhkp1fndgsc:/mnt/c/Python39/Scripts/:/mnt/c/Python39/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/Alexey/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Alexey/AppData/Local/gitkraken/bin:/mnt/c/Users/Alexey/AppData/Roaming/npm:/mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/heroku/bin:/snap/bin
+PATH = /home/panechek/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu20.04LTS_2004.5.11.0_x64__79rhkp1fndgsc:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/Python39/Scripts/:/mnt/c/Python39/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/Alexey/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Alexey/AppData/Local/gitkraken/bin:/mnt/c/Users/Alexey/AppData/Roaming/npm:/mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/heroku/bin:/snap/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-700dd001-2e29-4599-96c4-75891d72b17f.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-33d3a3c5-1e4a-4584-bebc-80872d7a50f8.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -97,7 +97,7 @@ NAME = Code
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
-VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/Alexey/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/Alexey/.vscode/extensions/ms-vscode-remote.remote-wsl-0.72.0
 # default
 MAKE_COMMAND := make
 # default
@@ -228,6 +228,6 @@ deploy:
 # strcache performance: lookups = 31 / hit rate = 29%
 # hash-table stats:
 # Load=22/8192=0%, Rehash=0, Collisions=1/31=3%
-# Finished Make data base on Fri Oct  7 11:20:31 2022
+# Finished Make data base on Mon Nov 14 11:00:50 2022
 
  
