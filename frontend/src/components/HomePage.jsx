@@ -11,12 +11,15 @@ import MessageList from './MessageList.jsx';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const username = JSON.parse(localStorage.getItem('userId')).username;
+  const { username } = JSON.parse(localStorage.getItem('userId'));
+  // const [modalInfo, setModalInfo] = useState({ type: null, item: null });
+  // const hideModal = () => setModalInfo({ type: null, item: null });
+  // const showModal = (type, item = null) => setModalInfo({ type, item });
 
   const currentChannel = useSelector((state) => state.channels.currentChannel);
 
   const channels = useSelector(channelsSelectors.selectAll);
-
+  const currentChannelName = channels.find((channel) => channel.id === currentChannel);
   const messages = useSelector((state) => {
     if (!state.messages) {
       return [];
@@ -42,6 +45,7 @@ const Home = () => {
         />
         <MessageList
           currentChannel={currentChannel}
+          channelName={currentChannelName}
           username={username}
           messages={messages}
         />

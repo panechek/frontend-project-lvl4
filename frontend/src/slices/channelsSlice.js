@@ -20,7 +20,6 @@ export const fetchChannels = createAsyncThunk(
   'channels/fetchChannels',
   async () => {
     const response = await axios.get(routes.userPath(), { headers: getAuthHeader() });
-    console.log(response.data);
     return response.data;
   },
 );
@@ -51,7 +50,6 @@ const channelsSlice = createSlice({
   initialState,
   reducers: {
     changeCurrentChannel: (state, action) => {
-      console.log(action.payload);
       state.currentChannel = action.payload;
     },
   },
@@ -61,7 +59,6 @@ const channelsSlice = createSlice({
         const { channels, currentChannelId } = action.payload;
         channelsAdapter.addMany(state, channels);
         state.currentChannel = currentChannelId;
-        console.log(current(state));
       })
       .addCase(addChannel.fulfilled, channelsAdapter.addOne)
       .addCase(removeChannel.fulfilled, channelsAdapter.removeOne);

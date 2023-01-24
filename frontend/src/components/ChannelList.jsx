@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { Button } from 'react-bootstrap';
+import ChannelButton from './ChannelButton.jsx';
 
 const ChannelList = ({ currentChannel, changeChannel, channels }) => {
   const channelStyle = (id) => cn('btn', 'w-100', 'rounded-0', 'text-start', {
@@ -23,13 +24,13 @@ const ChannelList = ({ currentChannel, changeChannel, channels }) => {
         </Button>
       </div>
       <ul className='nav flex-column nav-pills nav-fill px-2'>
-        {channels.map(({ id, name, removable }) => (
-          <li key={id} className='nav-item w-100'>
-            <button type='button' className={channelStyle(id)} onClick={() => changeChannel(id)}>
-              <span className='me-1'>#</span>
-              {name}
-            </button>
-          </li>
+        {channels.map((channel) => (
+            <ChannelButton
+                channel={channel}
+                style={channelStyle(channel.id)}
+                changeChannel={changeChannel}
+                key={channel.id}
+              />
         ))}
       </ul>
     </div>
