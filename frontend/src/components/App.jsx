@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
       } else {
         setLoggedIn(false);
       }
+      console.log(loggedIn);
     };
     return () => takeAuth();
   }, []);

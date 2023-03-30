@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useImmer } from 'use-immer';
+import getModal from './modals/index.js';
 import {
   fetchChannels,
   selectors as channelsSelectors,
@@ -9,12 +11,23 @@ import {
 import ChannelList from './ChannelList.jsx';
 import MessageList from './MessageList.jsx';
 
+const renderModal = ({ modalInfo, hideModal, setItems }) => {
+  if (!modalInfo.type) {
+    return null;
+  }
+
+  const Component = getModal(modalInfo.type);
+  return <Component modalInfo={modalInfo} setItems={setItems} onHide={hideModal} />;
+};
+
 const Home = () => {
   const dispatch = useDispatch();
-  const { username } = JSON.parse(localStorage.getItem('userId'));
-  // const [modalInfo, setModalInfo] = useState({ type: null, item: null });
-  // const hideModal = () => setModalInfo({ type: null, item: null });
-  // const showModal = (type, item = null) => setModalInfo({ type, item });
+  console.log(JSON.parse(localStorage.getItem('userId')));
+  const { username } = JSON.parse(localStorage.getItem('userId')) ?? '';
+  const [items, setItems] = useImmer([]);
+  const [modalInfo, setModalInfo] = useState({ type: null, item: null });
+  const hideModal = () => setModalInfo({ type: null, item: null });
+  const showModal = (type, item = null) => setModalInfo({ type, item });
 
   const currentChannel = useSelector((state) => state.channels.currentChannel);
 
@@ -42,6 +55,7 @@ const Home = () => {
           currentChannel={currentChannel}
           changeChannel={changeChannel}
           channels={channels}
+          showModal={showModal}
         />
         <MessageList
           currentChannel={currentChannel}
@@ -50,6 +64,7 @@ const Home = () => {
           messages={messages}
         />
       </div>
+      {renderModal({ modalInfo, hideModal, setItems })}
     </div>
   );
 };

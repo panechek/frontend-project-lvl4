@@ -24,13 +24,13 @@ export const fetchChannels = createAsyncThunk(
   },
 );
 
-export const addChannel = createAsyncThunk(
-  'channels/addChannel',
-  async (channel) => {
-    const { data } = await axios.post(routes.userPath(), channel);
-    return data;
-  },
-);
+// export const addChannel = createAsyncThunk(
+//   'channels/addChannel',
+//   async (channel) => {
+//     const { data } = await axios.post(routes.userPath(), channel);
+//     return data;
+//   },
+// );
 
 export const removeChannel = createAsyncThunk(
   'channels/removeChannel',
@@ -52,6 +52,9 @@ const channelsSlice = createSlice({
     changeCurrentChannel: (state, action) => {
       state.currentChannel = action.payload;
     },
+    addChannel: channelsAdapter.addOne,
+    updateChannel: channelsAdapter.updateOne,
+    renameChannel: channelsAdapter.addOne,
   },
   extraReducers: (builder) => {
     builder
@@ -60,11 +63,11 @@ const channelsSlice = createSlice({
         channelsAdapter.addMany(state, channels);
         state.currentChannel = currentChannelId;
       })
-      .addCase(addChannel.fulfilled, channelsAdapter.addOne)
+      // .addCase(addChannel.fulfilled, channelsAdapter.addOne)
       .addCase(removeChannel.fulfilled, channelsAdapter.removeOne);
   },
 });
 
 export const selectors = channelsAdapter.getSelectors((state) => state.channels);
-export const { changeCurrentChannel } = channelsSlice.actions;
+export const { changeCurrentChannel, addChannel, updateChannel } = channelsSlice.actions;
 export default channelsSlice.reducer;

@@ -8,7 +8,9 @@ start:
 	make start-backend & make start-frontend
 
 deploy:
-	git push heroku main
+	git add .
+	git commit -m '${message}'
+	git push
 
 lint-frontend:
 	make -C frontend lint

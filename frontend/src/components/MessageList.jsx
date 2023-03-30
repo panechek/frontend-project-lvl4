@@ -29,7 +29,12 @@ const MessageList = ({
         channelId: currentChannel,
       };
       socket.emit('newMessage', newMessage, (response) => {
-        setMessageValue('');
+        if (response.status === 'ok') {
+          console.log('ok');
+          setMessageValue('');
+        } else {
+          setTimeout(addNewMessage(e), 5000);
+        }
       });
     }
   };
