@@ -7,7 +7,6 @@ import {
   Button,
 } from 'react-bootstrap';
 import socket from '../../hooks/socket.io.js';
-import { updateChannel } from '../../slices/channelsSlice.js';
 
 // const generateOnSubmit = ({ modalInfo, setItems, onHide }) => (values) => {
 //   setItems((items) => {
@@ -20,9 +19,9 @@ import { updateChannel } from '../../slices/channelsSlice.js';
 const rename = ({ onHide, channel }) => (values) => {
   if (values !== '') {
     const { id } = channel;
+    console.log(values);
     socket.emit('renameChannel', { id, values }, (response) => {
       if (response.status === 'ok') {
-        console.log(response);
         onHide();
       } else {
         setTimeout(rename(channel.id, values), 5000);
@@ -32,23 +31,14 @@ const rename = ({ onHide, channel }) => (values) => {
 };
 
 const Rename = (props) => {
-  const dispatch = useDispatch();
   const { onHide, modalInfo } = props;
   const { channel } = modalInfo;
-  console.log(channel);
-  const f = useFormik({ onSubmit: rename(props), initialValues: channel.name });
+  console.log(modalInfo);
+  const f = useFormik({ onSubmit: rename(props), initialValues: '' });
   const inputRef = useRef();
 
   useEffect(() => {
     inputRef.current.select();
-    socket.on('renameChannel', (data) => {
-      dispatch(updateChannel({
-        id: data.id,
-        changes: {
-          body: data.name,
-        },
-      }));
-    });
   }, []);
 
   return (
@@ -70,11 +60,10 @@ const Rename = (props) => {
               name="body"
             />
             <div className="mt-2">
-              <Button
-                variant="secondary"
-                className="me-2">Отменить</Button>
-              <Button
-                variant="primary">Отправить</Button>
+              <Button variant="secondary" className="me-2">
+                Отменить
+              </Button>
+              <Button variant="primary">Отправить</Button>
             </div>
           </FormGroup>
           {/* <input type="submit" className="btn btn-primary mt-2" value="submit" /> */}

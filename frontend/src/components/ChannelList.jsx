@@ -8,14 +8,14 @@ const ChannelList = ({
   channels,
   showModal,
 }) => {
-  const channelStyle = (id) => cn('btn', 'w-100', 'rounded-0', 'text-start', {
+  const channelStyle = (id) => cn('btn', 'w-100', 'rounded-0', 'text-start', 'text-truncate', {
     'btn-secondary': currentChannel === id,
   });
 
   return (
-    <div className='col-4 col-md-2 border-end pt-5 px-0 bg-light'>
-      <div className='d-flex justify-content-between mb-2 ps-4 pe-2'>
-        <span>Каналы</span>
+    <div className='col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex'>
+      <div className='d-flex justify-content-between mb-2 ps-4 pe-2 p-4 mt-1'>
+        <b>Каналы</b>
         <Button
           type='button'
           variant='outline'
@@ -29,7 +29,7 @@ const ChannelList = ({
           <span className='visually-hidden'>+</span>
         </Button>
       </div>
-      <ul className='nav flex-column nav-pills nav-fill px-2'>
+      <ul className='nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block'>
         {channels.map((channel) => (
             <ChannelButton
                 channel={channel}

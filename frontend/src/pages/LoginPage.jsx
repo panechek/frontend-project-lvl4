@@ -36,7 +36,7 @@ const LoginPage = () => {
         auth.logIn();
         const { from } = location.state || { from: { pathname: '/' } };
         navigate(from);
-        connectSocket();
+        // connectSocket();
       } catch (err) {
         if (err.isAxiosError && err.response.status === 401) {
           setAuthFAiled(true);

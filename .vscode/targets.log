@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Mar 21 10:32:34 2023
+# Make data base, printed on Thu Aug 24 17:16:47 2023
 
 # Variables
 
@@ -34,7 +34,7 @@ CURDIR := /home/panechek/frontend-project-lvl4
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+VSCODE_NLS_CONFIG = {"locale":"en","osLocale":"en","availableLanguages":{}}
 # environment
 _ = /mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code/bin/code
 # makefile (from 'Makefile', line 1)
@@ -50,11 +50,11 @@ VSCODE_CWD = /mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/panechek/.vscode-server/bin/ee2b180d582a7f601fa6ecfdad8d9fd269ab1884/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu20.04LTS_2004.5.11.0_x64__79rhkp1fndgsc:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/Python39/Scripts/:/mnt/c/Python39/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/Alexey/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Alexey/AppData/Local/gitkraken/bin:/mnt/c/Users/Alexey/AppData/Roaming/npm:/mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/heroku/bin:/snap/bin
+PATH = /home/panechek/.vscode-server/bin/74f6148eb9ea00507ec113ec51c489d6ffb4b771/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu20.04LTS_2004.6.16.0_x64__79rhkp1fndgsc:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/Python39/Scripts/:/mnt/c/Python39/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Cloudflare/Cloudflare WARP/:/mnt/c/Program Files/PuTTY/:/mnt/c/Users/Alexey/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Alexey/AppData/Local/gitkraken/bin:/mnt/c/Users/Alexey/AppData/Roaming/npm:/mnt/c/Users/Alexey/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/heroku/bin:/snap/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-83e7892c-401d-45c0-8198-780910a9ac43.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-e5d72358-700d-4fc2-b10f-145544f23dd7.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -66,7 +66,7 @@ PWD = /home/panechek/frontend-project-lvl4
 # default
 .LOADED := 
 # environment
-WSL_INTEROP = /run/WSL/9063_interop
+WSL_INTEROP = /run/WSL/208_interop
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -100,7 +100,7 @@ NAME = Code
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
-VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/Alexey/.vscode/extensions/ms-vscode-remote.remote-wsl-0.76.1
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/Alexey/.vscode/extensions/ms-vscode-remote.remote-wsl-0.80.2
 # default
 MAKE_COMMAND := make
 # default
@@ -166,7 +166,7 @@ lint-frontend:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 14):
+#  recipe to execute (from 'Makefile', line 16):
 	make -C frontend lint
 
 # Not a target:
@@ -179,7 +179,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-01-21 12:00:13.5256237
+#  Last modified 2023-03-30 17:13:21.8767973
 #  File has been updated.
 #  Successfully updated.
 
@@ -215,7 +215,9 @@ deploy:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 11):
-	git push heroku main
+	git add .
+	git commit -m '${message}'
+	git push
 
 # files hash-table stats:
 # Load=9/1024=1%, Rehash=0, Collisions=0/19=0%
@@ -231,6 +233,6 @@ deploy:
 # strcache performance: lookups = 31 / hit rate = 29%
 # hash-table stats:
 # Load=22/8192=0%, Rehash=0, Collisions=1/31=3%
-# Finished Make data base on Tue Mar 21 10:32:34 2023
+# Finished Make data base on Thu Aug 24 17:16:47 2023
 
  

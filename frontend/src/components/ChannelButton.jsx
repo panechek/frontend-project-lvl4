@@ -9,24 +9,25 @@ const ChannelButton = ({
   showModal,
 }) => (
   channel.removable
-    ? <li className='nav-item w-100 d-flex'>
+    ? <li className='nav-item w-100'>
+      <div role='group' className='d-flex dropdown btn-group'>
         <button
             type='button'
             className={style}
             onClick={() => changeChannel(channel.id)}
         >
           <span className='me-1'>#</span>
-          {channel.body}
+          {channel.name}
         </button>
         <DropdownButton
             align="end"
             id="dropdown-menu-align-end"
-            variant="light"
+            variant="secondary"
         >
             <Dropdown.Item onClick={() => showModal('removing', channel)}>Удалить</Dropdown.Item>
             <Dropdown.Item onClick={() => showModal('renaming', channel)}>Переименовать</Dropdown.Item>
         </DropdownButton>
-
+      </div>
     </li>
     : <li className='nav-item w-100'>
         <button type='button' className={style} onClick={() => changeChannel(channel.id)}>

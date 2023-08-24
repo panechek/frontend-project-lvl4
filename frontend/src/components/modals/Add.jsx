@@ -1,60 +1,75 @@
-import { useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import _ from 'lodash';
+import React from 'react';
 import { useFormik } from 'formik';
-import { Modal, FormGroup, FormControl } from 'react-bootstrap';
+import {
+  Modal,
+  FormGroup,
+  FormControl,
+  FormLabel,
+  Button,
+} from 'react-bootstrap';
 import socket from '../../hooks/socket.io.js';
-import { addChannel } from '../../slices/channelsSlice.js';
 
-const addNewChannel = ({ onHide }) => (channel) => {
-  console.log(channel);
-  if (channel !== '') {
-    socket.emit('newChannel', channel, (response) => {
-      if (response.status === 'ok') {
-        console.log(response);
-        onHide();
-      } else {
-        setTimeout(addNewChannel(channel), 5000);
-      }
-    });
-  }
-};
-
-const Add = (props) => {
-  const dispatch = useDispatch();
-  const { onHide } = props;
-  const f = useFormik({ onSubmit: addNewChannel(props), initialValues: { body: '' } });
-
-  const inputRef = useRef();
-  useEffect(() => {
+const Add = ({ onHide }) => {
+  const [correct, setCorrect] = React.useState(false);
+  const inputRef = React.useRef();
+  React.useEffect(() => {
     inputRef.current.focus();
-    socket.on('newChannel', (channel) => {
-      console.log(channel);
-      dispatch(addChannel(channel));
-    });
   }, []);
 
+  const validateChannelName = (value) => {
+    let error;
+     if (!value) {
+      error = 'Required';
+     }
+     return error;
+  };
+   
+  const addNewChannel = (values) => {
+    const { name } = values;
+    if (name === '') {
+      setCorrect(true);
+      // throw err;
+    }
+    if (name !== '') {
+      socket.emit('newChannel', values);
+      onHide();
+    }
+  };
+  
+  const f = useFormik({ onSubmit: addNewChannel, initialValues: { name: '' } });
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={onHide}>
-        <Modal.Title>Add</Modal.Title>
+        <Modal.Title>Добавить канал</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <form onSubmit={f.handleSubmit}>
-          <FormGroup>
+          <FormGroup >
             <FormControl
-              required
               ref={inputRef}
               onChange={f.handleChange}
               onBlur={f.handleBlur}
-              value={f.values.body}
-              data-testid="input-body"
-              name="body"
+              value={f.values.name}
+              name="name"
+              id="name"
+              className="mb-2"
+              // required
+              isInvalid={correct}
             />
+            <FormLabel htmlFor="name" className="visually-hidden">
+              Имя канала
+            </FormLabel>
+            <FormControl.Feedback type="invalid">the username or password is incorrect</FormControl.Feedback>
           </FormGroup>
-          <input type="submit" className="btn btn-primary mt-2" value="submit" />
+          <div className="d-flex justify-content-end">
+              <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
+                Отменить
+              </Button>
+              <Button type="submit" variant="primary">
+                Отправить
+              </Button>
+            </div>
         </form>
       </Modal.Body>
     </Modal>

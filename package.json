@@ -4,7 +4,7 @@
   "description": "Chat-react",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build",
+    "build": "npm run build --prefix frontend",
     "start": "start-server -s ./frontend/build",
     "test": "test",
     "postinstall": "cd frontend && npm ci"

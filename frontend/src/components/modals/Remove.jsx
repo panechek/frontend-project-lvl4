@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Modal, FormGroup, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import socket from '../../hooks/socket.io';
+import { removeChannel } from '../../redux/channelsSlice';
 
-// BEGIN
-const generateOnSubmit = ({ modalInfo, onHide }) => (e) => {
+const generateOnSubmit = ({
+  modalInfo,
+  onHide,
+}) => (e) => {
   e.preventDefault();
-  // setItems((items) => items.filter((i) => i.id !== modalInfo.item.id));
+  console.log(modalInfo);
+  socket.emit('removeChannel', modalInfo.item);
   onHide();
 };
 
 const Remove = (props) => {
-  const { onHide } = props;
+  const { onHide, modalInfo } = props;
+  const dispatch = useDispatch();
   const onSubmit = generateOnSubmit(props);
 
   return (
@@ -23,8 +30,8 @@ const Remove = (props) => {
         <form onSubmit={onSubmit}>
           <FormGroup className="d-flex justify-content-end">
           <Button variant="secondary"
-          className="me-2">Отменить</Button>
-          <Button variant="danger">Удалить</Button>
+          className="me-2" onClick={onHide} >Отменить</Button>
+          <Button variant="danger" onClick={onSubmit} >Удалить</Button>
           </FormGroup>
         </form>
       </Modal.Body>

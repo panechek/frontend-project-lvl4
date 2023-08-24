@@ -8,12 +8,14 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
+
+import './scss/app.scss';
 import { Button } from 'react-bootstrap';
-import LoginPage from './LoginPage.jsx';
-import Home from './HomePage.jsx';
-import Navbar from './Navbar.jsx';
-import AuthContext from '../contexts/index.jsx';
-import useAuth from '../hooks/index.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import Home from './pages/HomePage.jsx';
+import Navbar from './components/Navbar.jsx';
+import AuthContext from './contexts/index.jsx';
+import useAuth from './hooks/index.jsx';
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -34,16 +36,17 @@ const AuthProvider = ({ children }) => {
       } else {
         setLoggedIn(false);
       }
-      console.log(loggedIn);
     };
     return () => takeAuth();
   }, []);
   return (
-    <AuthContext.Provider value={{
-      loggedIn,
-      logIn,
-      logOut,
-    }}>
+    <AuthContext.Provider
+      value={{
+        loggedIn,
+        logIn,
+        logOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -52,9 +55,7 @@ const AuthProvider = ({ children }) => {
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
   const location = useLocation();
-  return (
-    auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />
-  );
+  return auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />;
 };
 
 const NoMatch = () => {
@@ -62,31 +63,36 @@ const NoMatch = () => {
   return (
     <div>
       <h3>
-      No match for <code>{location.pathname}</code>
+       Страница не найдена
       </h3>
+      <p>Но вы можете перейти
+        <Link to='/'> на главную страницую</Link>
+      </p>
     </div>
   );
 };
 
 const App = () => (
-    <AuthProvider>
-      <div className='d-flex flex-column h-100'>
+  <AuthProvider>
+    <div className="d-flex flex-column h-100">
       <Router>
-      <Navbar />
+        <Navbar />
         <Routes>
-          <Route path="/" element={(
-            <PrivateRoute>
-              <Home />
-            </PrivateRoute>
-          )}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </Router>
-      </div>
-      <div className='Toastify'></div>
-    </AuthProvider>
+    </div>
+    <div className="Toastify"></div>
+  </AuthProvider>
 );
 
 export default App;
