@@ -14,6 +14,7 @@ const fetchData = createAsyncThunk(
   'fetchData',
   async () => {
     const response = await axios.get(routes.userPath(), { headers: getAuthHeader() });
+    console.log(response.data);
     return response.data;
   },
 );

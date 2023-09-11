@@ -1,44 +1,47 @@
-import React, { useEffect, useRef, useDispatch } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import {
   Modal,
   FormGroup,
   FormControl,
+  FormLabel,
   Button,
 } from 'react-bootstrap';
+import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
+import validateChannelName from '../../utils/validateChannelName.js';
 import socket from '../../hooks/socket.io.js';
 
-// const generateOnSubmit = ({ modalInfo, setItems, onHide }) => (values) => {
-//   setItems((items) => {
-//     const item = items.find((i) => i.id === modalInfo.item.id);
-//     item.body = values.body;
-//   });
-//   onHide();
-// };
-
-const rename = ({ onHide, channel }) => (values) => {
-  if (values !== '') {
-    const { id } = channel;
-    console.log(values);
-    socket.emit('renameChannel', { id, values }, (response) => {
-      if (response.status === 'ok') {
-        onHide();
-      } else {
-        setTimeout(rename(channel.id, values), 5000);
-      }
-    });
-  }
-};
-
-const Rename = (props) => {
-  const { onHide, modalInfo } = props;
-  const { channel } = modalInfo;
-  console.log(modalInfo);
-  const f = useFormik({ onSubmit: rename(props), initialValues: '' });
+const Rename = ({ onHide, modalInfo }) => {
+  const { item } = modalInfo;
+  const [errorName, setErrorName] = React.useState('');
   const inputRef = useRef();
+  const channels = useSelector(channelsSelectors.selectAll);
+
+  const renameChannel = (values) => {
+    const { name } = values;
+    const isValid = validateChannelName(channels, name);
+    console.log(isValid);
+    if (isValid === '') {
+      const { id } = item;
+      socket.emit('renameChannel', { id, name }, (response) => {
+        if (response.status === 'ok') {
+          setErrorName('');
+          onHide();
+        } else {
+          setErrorName(isValid);
+        }
+      });
+    }
+  };
+
+  const f = useFormik({
+    onSubmit: renameChannel,
+    initialValues: { name: item.name },
+  });
 
   useEffect(() => {
-    inputRef.current.select();
+    inputRef.current.focus();
   }, []);
 
   return (
@@ -51,22 +54,28 @@ const Rename = (props) => {
         <form onSubmit={f.handleSubmit}>
           <FormGroup>
             <FormControl
-              required
               ref={inputRef}
               onChange={f.handleChange}
               onBlur={f.handleBlur}
-              value={f.values.body}
-              data-testid="input-body"
-              name="body"
+              value={f.values.name}
+              name="name"
+              id="name"
+              className="mb-2"
+              isInvalid={errorName !== ''}
             />
-            <div className="mt-2">
-              <Button variant="secondary" className="me-2">
+        <FormLabel htmlFor="name" className="visually-hidden">
+              Имя канала
+            </FormLabel>
+            <FormControl.Feedback type="invalid">{errorName}</FormControl.Feedback>
+          </FormGroup>
+          <div className="d-flex justify-content-end">
+              <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
                 Отменить
               </Button>
-              <Button variant="primary">Отправить</Button>
-            </div>
-          </FormGroup>
-          {/* <input type="submit" className="btn btn-primary mt-2" value="submit" /> */}
+              <Button type="submit" variant="primary">
+                Отправить
+              </Button>
+              </div>
         </form>
       </Modal.Body>
     </Modal>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import {
   Modal,
@@ -7,35 +8,32 @@ import {
   FormLabel,
   Button,
 } from 'react-bootstrap';
+import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
+import validateChannelName from '../../utils/validateChannelName.js';
 import socket from '../../hooks/socket.io.js';
 
 const Add = ({ onHide }) => {
-  const [correct, setCorrect] = React.useState(false);
+  const [errorName, setErrorName] = React.useState('');
+  const channels = useSelector(channelsSelectors.selectAll);
+  console.log(channels);
   const inputRef = React.useRef();
   React.useEffect(() => {
     inputRef.current.focus();
   }, []);
 
-  const validateChannelName = (value) => {
-    let error;
-     if (!value) {
-      error = 'Required';
-     }
-     return error;
-  };
-   
   const addNewChannel = (values) => {
     const { name } = values;
-    if (name === '') {
-      setCorrect(true);
-      // throw err;
-    }
-    if (name !== '') {
+    const isValid = validateChannelName(channels, name);
+    console.log(isValid);
+    if (isValid === '') {
       socket.emit('newChannel', values);
+      setErrorName('');
       onHide();
+    } else {
+      setErrorName(isValid);
     }
   };
-  
+
   const f = useFormik({ onSubmit: addNewChannel, initialValues: { name: '' } });
   return (
     <Modal show centered>
@@ -54,13 +52,12 @@ const Add = ({ onHide }) => {
               name="name"
               id="name"
               className="mb-2"
-              // required
-              isInvalid={correct}
+              isInvalid={errorName !== ''}
             />
             <FormLabel htmlFor="name" className="visually-hidden">
               Имя канала
             </FormLabel>
-            <FormControl.Feedback type="invalid">the username or password is incorrect</FormControl.Feedback>
+            <FormControl.Feedback type="invalid">{errorName}</FormControl.Feedback>
           </FormGroup>
           <div className="d-flex justify-content-end">
               <Button type="button" variant="secondary" className="me-2" onClick={onHide}>

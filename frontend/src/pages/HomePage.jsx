@@ -16,19 +16,18 @@ import ChannelList from '../components/ChannelList.jsx';
 import MessageList from '../components/MessageList.jsx';
 import socket from '../hooks/socket.io.js';
 
-const renderModal = ({ modalInfo, hideModal, setItems }) => {
+const renderModal = ({ modalInfo, hideModal }) => {
   if (!modalInfo.type) {
     return null;
   }
 
   const Component = getModal(modalInfo.type);
-  return <Component modalInfo={modalInfo} setItems={setItems} onHide={hideModal} />;
+  return <Component modalInfo={modalInfo} onHide={hideModal} />;
 };
 
 const Home = () => {
   const dispatch = useDispatch();
   const { username } = JSON.parse(localStorage.getItem('userId')) ?? '';
-  const [items, setItems] = useImmer([]);
   const [modalInfo, setModalInfo] = useState({ type: null, item: null });
   const hideModal = () => setModalInfo({ type: null, item: null });
   const showModal = (type, item = null) => setModalInfo({ type, item });
@@ -73,7 +72,7 @@ const Home = () => {
             messages={messages}
           />
         </div>
-        {renderModal({ modalInfo, hideModal, setItems })}
+        {renderModal({ modalInfo, hideModal })}
       </div>
     )
   );
