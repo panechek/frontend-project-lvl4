@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Thu Aug 31 08:48:39 2023
+# Make data base, printed on Wed Sep 13 11:36:50 2023
 
 # Variables
 
@@ -16,6 +15,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # automatic
@@ -37,7 +38,7 @@ MAKEFILE_LIST :=  Makefile
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_CWD = /
+VSCODE_CWD = /Users/annamerkulova
 # environment
 PATH = /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
 # environment
@@ -63,7 +64,9 @@ HOME = /Users/annamerkulova
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/annamerkulova/Library/Application Support/Code/CachedData/6c3e3dba23e8fadc360aed75ce363ba185c49794
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/annamerkulova/Library/Application Support/Code/CachedData/8b617bd08fd9e3fc94d14adb8d358b56e3f72314
 # environment
 LOGNAME = annamerkulova
 # environment
@@ -79,17 +82,21 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 1
+SHLVL = 3
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = annamerkulova
 # makefile
 .DEFAULT_GOAL := start-frontend
+# environment
+TERM_SESSION_ID = C6199F82-4D46-4135-9307-9509B98F83C8
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# environment
+TERM_PROGRAM = Apple_Terminal
 # default
 .VARIABLES := 
 # environment
@@ -97,7 +104,7 @@ TMPDIR = /var/folders/vg/j9gr44sx5wgdfhy9ff6psghh0000gp/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/annamerkulova/Library/Application Support/Code/1.81-main.sock
+VSCODE_IPC_HOOK = /Users/annamerkulova/Library/Application Support/Code/1.82-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -107,9 +114,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.42054886.42054892
+TERM_PROGRAM_VERSION = 447
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.42815768.42815774.C40C9B03-37FC-4661-9FB1-03C861C0F40C
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -135,9 +146,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 24957
+TERM = xterm-256color
+# environment
+VSCODE_PID = 45322
 # variable set hash-table stats:
-# Load=62/1024=6%, Rehash=0, Collisions=1/86=1%
+# Load=69/1024=7%, Rehash=0, Collisions=1/93=1%
 
 # Pattern-specific Variable Values
 
@@ -240,7 +253,7 @@ deploy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Aug 31 08:48:39 2023
+# Finished Make data base on Wed Sep 13 11:36:50 2023
 
  
 make: *** No rule to make target `all'.  Stop.
