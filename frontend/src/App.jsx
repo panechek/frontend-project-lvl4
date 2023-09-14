@@ -16,6 +16,7 @@ import Home from './pages/HomePage.jsx';
 import Navbar from './components/Navbar.jsx';
 import AuthContext from './contexts/index.jsx';
 import useAuth from './hooks/index.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -58,20 +59,6 @@ const PrivateRoute = ({ children }) => {
   return auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />;
 };
 
-const NoMatch = () => {
-  const location = useLocation();
-  return (
-    <div>
-      <h3>
-       Страница не найдена
-      </h3>
-      <p>Но вы можете перейти
-        <Link to='/'> на главную страницую</Link>
-      </p>
-    </div>
-  );
-};
-
 const App = () => (
   <AuthProvider>
     <div className="d-flex flex-column h-100">
@@ -87,7 +74,7 @@ const App = () => (
             }
           />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="*" element={<NoMatch />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>
