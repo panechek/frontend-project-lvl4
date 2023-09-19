@@ -11,7 +11,7 @@ const ChannelButton = ({
 }) => (
   channel.removable
     ? <li className='nav-item w-100'>
-      <Dropdown as={ButtonGroup}>
+      <Dropdown as={ButtonGroup} className='w-100'>
       <Button variant="light" className={style} onClick={() => changeChannel(channel.id)}><span className='me-1'>#</span>
           {channel.name}</Button>
 

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { Modal, FormGroup, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
 import socket from '../../hooks/socket.io';
-import { removeChannel } from '../../redux/channelsSlice';
 
 const generateOnSubmit = ({
   modalInfo,
@@ -16,7 +14,6 @@ const generateOnSubmit = ({
 
 const Remove = (props) => {
   const { onHide, modalInfo } = props;
-  const dispatch = useDispatch();
   const onSubmit = generateOnSubmit(props);
 
   return (
