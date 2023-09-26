@@ -10,7 +10,6 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     addMessage: messagesAdapter.addOne,
-    removeMessage: (state, { payload }) => messagesAdapter.removeOne(state, payload.id),
   },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
@@ -21,6 +20,6 @@ const messagesSlice = createSlice({
 });
 
 export const selectors = messagesAdapter.getSelectors((state) => state.messages);
-export const { actions } = messagesSlice;
+export const { addMessage } = messagesSlice.actions;
 
 export default messagesSlice.reducer;

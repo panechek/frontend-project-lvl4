@@ -24,7 +24,6 @@ const Add = ({ onHide }) => {
   const addNewChannel = (values) => {
     const { name } = values;
     const isValid = validateChannelName(channels, name);
-    console.log(isValid);
     if (isValid === '') {
       socket.emit('newChannel', values);
       setErrorName('');

@@ -8,9 +8,14 @@ const ChannelList = ({
   channels,
   showModal,
 }) => {
-  const channelStyle = (id) => cn('btn', 'w-100', 'rounded-0', 'text-start', 'text-truncate', {
-    'btn-secondary': currentChannel === id,
-  });
+  const channelStyle = (id) => cn(
+    'btn',
+    'w-100',
+    'rounded-0',
+    'text-start',
+    'text-truncate',
+    { 'btn-secondary': currentChannel === id },
+  );
 
   return (
     <div className='col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex'>
@@ -29,7 +34,7 @@ const ChannelList = ({
           <span className='visually-hidden'>+</span>
         </Button>
       </div>
-      <ul className='nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block'>
+      <ul id='channel-box' className='nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block'>
         {channels.map((channel) => (
             <ChannelButton
                 currentChannel={currentChannel}

@@ -8,14 +8,15 @@ const ChannelButton = ({
   style,
   changeChannel,
   showModal,
+  currentChannel,
 }) => (
   channel.removable
-    ? <li className='nav-item w-100'>
-      <Dropdown as={ButtonGroup} className='w-100'>
-      <Button variant="light" className={style} onClick={() => changeChannel(channel.id)}><span className='me-1'>#</span>
-          {channel.name}</Button>
+    ? <li className='nav-item w-100 mb-1'>
+      <Dropdown as={ButtonGroup} className='d-flex'>
+      <button className={style} onClick={() => changeChannel(channel.id)}><span className='me-1'>#</span>
+          {channel.name}</button>
 
-      <Dropdown.Toggle split variant="light" id="dropdown-split-basic" />
+      <Dropdown.Toggle split variant={currentChannel === channel.id ? 'secondary' : 'light'} id="dropdown-split-basic" />
 
       <Dropdown.Menu>
       <Dropdown.Item onClick={() => showModal('removing', channel)}>Удалить</Dropdown.Item>
@@ -23,7 +24,7 @@ const ChannelButton = ({
       </Dropdown.Menu>
     </Dropdown>
     </li>
-    : <li className='nav-item w-100'>
+    : <li className='nav-item w-100 mb-1'>
         <button type='button' className={style} onClick={() => changeChannel(channel.id)}>
           <span className='me-1'>#</span>
           {channel.name}

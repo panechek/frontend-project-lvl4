@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-// import socket from '../hooks/socket.io.js';
-import { selectors, actions as messagesActions } from '../redux/messagesSlice.js';
+import { Form } from 'react-bootstrap';
+import socket from '../hooks/socket.io.js';
 import Messages from './Messages.jsx';
 
 const MessageList = ({
@@ -11,31 +9,38 @@ const MessageList = ({
   messages,
   channelName,
 }) => {
-  const dispatch = useDispatch();
   const [messageValue, setMessageValue] = React.useState('');
-  const inputMessageRef = React.useRef();
+  const [isLoading, setIsLoading] = React.useState(false);
+  const inputMessageRef = React.useRef(null);
+  const messagesListRef = React.useRef(null);
 
   React.useEffect(() => {
     inputMessageRef.current.focus();
-    // socket.on('newMessage', (message) => dispatch(messagesActions.addMessage(message)));
-  }, []);
+  }, [messageValue]);
+  React.useEffect(() => {
+    messagesListRef.current.scrollTo(0, 999999);
+  }, [messages]);
 
   const addNewMessage = (e) => {
+    setIsLoading(true);
     e.preventDefault();
+
     if (messageValue !== '') {
       const newMessage = {
         username,
         value: messageValue,
         channelId: currentChannel,
       };
-      // socket.emit('newMessage', newMessage, (response) => {
-      //   if (response.status === 'ok') {
-      //     setMessageValue('');
-      //   } else {
-      //     setTimeout(addNewMessage(e), 5000);
-      //   }
-      // });
+      socket.emit('newMessage', newMessage, (response) => {
+        if (response.status === 'ok') {
+          setIsLoading(false);
+          setMessageValue('');
+          inputMessageRef.current.focus();
+        }
+      });
     }
+    setIsLoading(false);
+    inputMessageRef.current.focus();
   };
 
   return (
@@ -45,7 +50,7 @@ const MessageList = ({
           <p className="m-0">{currentChannel && <b># {channelName.name}</b>}</p>
           <span className="text-muted">{messages.length} сообщений</span>
         </div>
-        <div id="messadge-box" className="chat-messages overflow-auto px-5">
+        <div id="messadge-box" className="chat-messages overflow-auto px-5" ref={messagesListRef}>
           {messages.length !== 0 && <Messages messages={messages} />}
         </div>
         <div className="mt-auto px-5 py-3">
@@ -59,10 +64,11 @@ const MessageList = ({
                 value={messageValue}
                 onChange={(e) => setMessageValue(e.target.value)}
                 ref={inputMessageRef}
+                disabled={isLoading}
               />
               <button
                 type="submit"
-                disabled={messageValue === ''}
+                disabled={messageValue === '' || isLoading}
                 className="btn-group-vertical btn border-0"
               >
                 <svg

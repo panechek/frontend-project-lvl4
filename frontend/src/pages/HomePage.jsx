@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useImmer } from 'use-immer';
 import getModal from '../components/modals/index.js';
 import {
   selectors as channelsSelectors,
@@ -9,6 +8,7 @@ import {
   renameChannel,
   addChannel,
 } from '../redux/channelsSlice.js';
+import { addMessage } from '../redux/messagesSlice.js';
 
 import fetchData from '../redux/fetchDataAsyncThunk.js';
 
@@ -50,10 +50,8 @@ const Home = () => {
     socket.on('connect', () => console.log(socket.id));
     socket.on('newChannel', (channel) => dispatch(addChannel(channel)));
     socket.on('removeChannel', ({ id }) => dispatch(removeChannel(id)));
-    socket.on('renameChannel', ({ id, name }) => {
-      console.log(id, name);
-      dispatch(renameChannel({ id, changes: { name } }));
-    });
+    socket.on('renameChannel', ({ id, name }) => dispatch(renameChannel({ id, changes: { name } })));
+    socket.on('newMessage', (message) => dispatch(addMessage(message)));
   }, []);
 
   const changeChannel = (id) => dispatch(changeCurrentChannel(id));
