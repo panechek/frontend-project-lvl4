@@ -34,7 +34,6 @@ const Home = () => {
 
   const currentChannel = useSelector((state) => state.channels.currentChannel);
   const channels = useSelector(channelsSelectors.selectAll);
-  console.log(channels);
   const currentChannelName = channels.find((channel) => channel.id === currentChannel);
   const messages = useSelector((state) => {
     if (!state.messages) {

@@ -11,7 +11,10 @@ import {
 
 import './scss/app.scss';
 import { Button } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import LoginPage from './pages/LoginPage.jsx';
+import SignupPage from './pages/SignupPage.jsx';
 import Home from './pages/HomePage.jsx';
 import Navbar from './components/Navbar.jsx';
 import AuthContext from './contexts/index.jsx';
@@ -75,10 +78,11 @@ const App = () => (
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </Router>
     </div>
-    <div className="Toastify"></div>
+    <ToastContainer />
   </AuthProvider>
 );
 

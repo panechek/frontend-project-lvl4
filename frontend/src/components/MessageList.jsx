@@ -31,7 +31,7 @@ const MessageList = ({
         value: messageValue,
         channelId: currentChannel,
       };
-      socket.emit('newMessage', newMessage, (response) => {
+      socket.volatile.emit('newMessage', newMessage, (response) => {
         if (response.status === 'ok') {
           setIsLoading(false);
           setMessageValue('');
@@ -42,7 +42,6 @@ const MessageList = ({
     setIsLoading(false);
     inputMessageRef.current.focus();
   };
-
   return (
     <div className="col p-0 h-100">
       <div className="d-flex flex-column h-100">

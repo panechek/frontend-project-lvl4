@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Sep 26 10:01:42 2023
+# Make data base, printed on Mon Oct 16 15:26:40 2023
 
 # Variables
 
@@ -29,6 +29,7 @@ VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # automatic
 @F = $(notdir $@)
 # makefile
+ 
 CURDIR := /Users/annamerkulova/frontend-project-lvl4
 # makefile
 SHELL = /bin/sh
@@ -45,13 +46,13 @@ VSCODE_CWD = /Users/annamerkulova
 # environment
 PATH = /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
 # environment
-LaunchInstanceID = D8BA7FD0-B712-48D7-9858-4EB19F1AA5B4
+LaunchInstanceID = 5943D7CA-A16A-4485-975C-038AB0F1D8C0
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Pzuf8AdgIT/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.F43Zza7u5P/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -119,7 +120,7 @@ MFLAGS = -Rrqp
 # environment
 TERM_PROGRAM_VERSION = 447
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.42857282.42857288.EF801263-4346-4053-B20E-0C26E86AC119
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.42857282.42857288.5F5A3DAD-5B39-4C74-B2EB-C2FBDC5FFE6A
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -149,7 +150,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 553
+VSCODE_PID = 1719
 # variable set hash-table stats:
 # Load=68/1024=7%, Rehash=0, Collisions=1/92=1%
 
@@ -162,7 +163,6 @@ VSCODE_PID = 553
 # . (device 16777220, inode 42249291): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
- 
 
 # Implicit Rules
 
@@ -183,6 +183,7 @@ all:
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
+ 
 #  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -255,6 +256,6 @@ deploy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Sep 26 10:01:42 2023
+# Finished Make data base on Mon Oct 16 15:26:40 2023
 
  

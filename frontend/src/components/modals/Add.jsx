@@ -8,6 +8,7 @@ import {
   FormLabel,
   Button,
 } from 'react-bootstrap';
+import showToastify from '../../utils/showToastify.js';
 import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
 import validateChannelName from '../../utils/validateChannelName.js';
 import socket from '../../hooks/socket.io.js';
@@ -15,8 +16,8 @@ import socket from '../../hooks/socket.io.js';
 const Add = ({ onHide }) => {
   const [errorName, setErrorName] = React.useState('');
   const channels = useSelector(channelsSelectors.selectAll);
-  console.log(channels);
   const inputRef = React.useRef();
+
   React.useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -25,9 +26,11 @@ const Add = ({ onHide }) => {
     const { name } = values;
     const isValid = validateChannelName(channels, name);
     if (isValid === '') {
-      socket.emit('newChannel', values);
-      setErrorName('');
-      onHide();
+      socket.volatile.emit('newChannel', values, () => {
+        showToastify('Канал создан');
+        setErrorName('');
+        onHide();
+      });
     } else {
       setErrorName(isValid);
     }

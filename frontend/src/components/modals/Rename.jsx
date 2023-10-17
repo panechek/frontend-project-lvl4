@@ -8,6 +8,7 @@ import {
   FormLabel,
   Button,
 } from 'react-bootstrap';
+import showToastify from '../../utils/showToastify.js';
 import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
 import validateChannelName from '../../utils/validateChannelName.js';
 import socket from '../../hooks/socket.io.js';
@@ -21,11 +22,11 @@ const Rename = ({ onHide, modalInfo }) => {
   const renameChannel = (values) => {
     const { name } = values;
     const isValid = validateChannelName(channels, name);
-    console.log(isValid);
     if (isValid === '') {
       const { id } = item;
-      socket.emit('renameChannel', { id, name }, (response) => {
+      socket.volatile.emit('renameChannel', { id, name }, (response) => {
         if (response.status === 'ok') {
+          showToastify('Канал переименован');
           setErrorName('');
           onHide();
         } else {
