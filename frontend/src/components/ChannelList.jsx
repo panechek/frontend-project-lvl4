@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import ChannelButton from './ChannelButton.jsx';
 
 const ChannelList = ({
@@ -16,11 +17,12 @@ const ChannelList = ({
     'text-truncate',
     { 'btn-secondary': currentChannel === id },
   );
+  const { t } = useTranslation();
 
   return (
     <div className='col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex'>
       <div className='d-flex justify-content-between mb-2 ps-4 pe-2 p-4 mt-1'>
-        <b>Каналы</b>
+        <b>{t('channels')}</b>
         <Button
           type='button'
           variant='outline'

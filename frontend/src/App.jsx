@@ -4,14 +4,12 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
   Navigate,
   useLocation,
 } from 'react-router-dom';
 
 import './scss/app.scss';
-import { Button } from 'react-bootstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';

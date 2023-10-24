@@ -4,7 +4,8 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
-import connectSocket from '../hooks/socket.io.js';
+import { useTranslation } from 'react-i18next';
+
 import useAuth from '../hooks/index.jsx';
 import routes from '../routes.js';
 import avatarImg from '../assets/avatar.jpg';
@@ -15,6 +16,8 @@ const LoginPage = () => {
   const inputRef = useRef();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -25,8 +28,8 @@ const LoginPage = () => {
       password: '',
     },
     validationSchema: yup.object().shape({
-      username: yup.string().required('Заполните это поле'),
-      password: yup.string().required('Заполните это поле'),
+      username: yup.string().required(t('forms.require')),
+      password: yup.string().required(t('forms.require')),
     }),
     onSubmit: async (values) => {
       setAuthFAiled(false);
@@ -58,7 +61,7 @@ const LoginPage = () => {
                 <img src={avatarImg} className='rounded-circle' alt="Войти" />
               </div>
               <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
-                <h1 className='test-center mb-4'>Войти</h1>
+                <h1 className='test-center mb-4'>{t('forms.login')}</h1>
                   <Form.Group>
                     <FloatingLabel
                       htmlFor="username" label="Ваш ник">
@@ -81,8 +84,8 @@ const LoginPage = () => {
                                     label="Пароль"
                                     >
                                     <Form.Control
-                                    className='mb-4'
-                                        type="password"
+                                      className='mb-4'
+                                      type="password"
                                         onChange={formik.handleChange}
                                         value={formik.values.password}
                                         placeholder="Пароль"
@@ -93,17 +96,17 @@ const LoginPage = () => {
                                         required
                                     />
                                 <Form.Control.Feedback type="invalid" tooltip>
-                                    Неверное имя пользователя или пароль
+                                  {t('forms.wrongData')}
                                     </Form.Control.Feedback>
                                     </FloatingLabel>
                             </Form.Group>
-                            <Button type="submit" className='w-100 mb-3 btn btn-outline-primary' variant="outline-primary">Войти</Button>
+                            <Button type="submit" className='w-100 mb-3 btn btn-outline-primary' variant="outline-primary">{t('forms.login')}</Button>
                         </Form>
                     </div>
                     <div className='card-footer p-4'>
                         <div className="text-center">
                             <span>
-                                Нет аккаунта? <a href="/signup"> Регистрация</a>
+                            {t('forms.noLogin')} <a href="/signup">{t('forms.signup')}</a>
                             </span>
                         </div>
                     </div>

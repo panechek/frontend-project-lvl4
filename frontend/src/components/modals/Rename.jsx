@@ -8,6 +8,7 @@ import {
   FormLabel,
   Button,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import showToastify from '../../utils/showToastify.js';
 import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
 import validateChannelName from '../../utils/validateChannelName.js';
@@ -18,6 +19,7 @@ const Rename = ({ onHide, modalInfo }) => {
   const [errorName, setErrorName] = React.useState('');
   const inputRef = useRef();
   const channels = useSelector(channelsSelectors.selectAll);
+  const { t } = useTranslation();
 
   const renameChannel = (values) => {
     const { name } = values;
@@ -26,7 +28,7 @@ const Rename = ({ onHide, modalInfo }) => {
       const { id } = item;
       socket.volatile.emit('renameChannel', { id, name }, (response) => {
         if (response.status === 'ok') {
-          showToastify('Канал переименован');
+          showToastify(t('modal.channelHasRenamed'));
           setErrorName('');
           onHide();
         } else {
@@ -48,7 +50,7 @@ const Rename = ({ onHide, modalInfo }) => {
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={onHide}>
-        <Modal.Title>Переименовать канал</Modal.Title>
+        <Modal.Title>{t('modal.renameChannel')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -65,16 +67,16 @@ const Rename = ({ onHide, modalInfo }) => {
               isInvalid={errorName !== ''}
             />
         <FormLabel htmlFor="name" className="visually-hidden">
-              Имя канала
+               {t('modal.channelName')}
             </FormLabel>
             <FormControl.Feedback type="invalid">{errorName}</FormControl.Feedback>
           </FormGroup>
           <div className="d-flex justify-content-end">
               <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
-                Отменить
+                {t('channel.cancel')}
               </Button>
               <Button type="submit" variant="primary">
-                Отправить
+                {t('modal.send')}
               </Button>
               </div>
         </form>

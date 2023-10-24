@@ -8,6 +8,8 @@ import {
   FormLabel,
   Button,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+
 import showToastify from '../../utils/showToastify.js';
 import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
 import validateChannelName from '../../utils/validateChannelName.js';
@@ -17,7 +19,7 @@ const Add = ({ onHide }) => {
   const [errorName, setErrorName] = React.useState('');
   const channels = useSelector(channelsSelectors.selectAll);
   const inputRef = React.useRef();
-
+  const { t } = useTranslation();
   React.useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -27,7 +29,7 @@ const Add = ({ onHide }) => {
     const isValid = validateChannelName(channels, name);
     if (isValid === '') {
       socket.volatile.emit('newChannel', values, () => {
-        showToastify('Канал создан');
+        showToastify(t('modal.channelHasCreated'));
         setErrorName('');
         onHide();
       });
@@ -40,7 +42,7 @@ const Add = ({ onHide }) => {
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={onHide}>
-        <Modal.Title>Добавить канал.</Modal.Title>
+        <Modal.Title>{t('modal.addChannel')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -57,16 +59,16 @@ const Add = ({ onHide }) => {
               isInvalid={errorName !== ''}
             />
             <FormLabel htmlFor="name" className="visually-hidden">
-              Имя канала
+              {t('modal.channelName')}
             </FormLabel>
             <FormControl.Feedback type="invalid">{errorName}</FormControl.Feedback>
           </FormGroup>
           <div className="d-flex justify-content-end">
               <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
-                Отменить
+                {t('modal.cancel')}
               </Button>
               <Button type="submit" variant="primary">
-                Отправить
+                {t('modal.send')}
               </Button>
             </div>
         </form>

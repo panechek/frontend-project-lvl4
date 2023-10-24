@@ -1,43 +1,38 @@
 import React, { useEffect } from 'react';
 import { Modal, FormGroup, Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import showToastify from '../../utils/showToastify';
 import socket from '../../hooks/socket.io';
 
-const generateOnSubmit = ({
-  modalInfo,
-  onHide,
-}) => (e) => {
-  e.preventDefault();
-  socket.volatile.emit('removeChannel', modalInfo.item, () => showToastify('Канал удален'));
-  onHide();
-};
-
-const Remove = (props) => {
-  const { onHide } = props;
-  const onSubmit = generateOnSubmit(props);
+const Remove = ({ onHide, modalInfo }) => {
   const enterRef = React.useRef(null);
-
+  const { t } = useTranslation();
   React.useEffect(() => {
     enterRef.current.focus();
   }, []);
 
+  const generateOnSubmit = (e) => {
+    e.preventDefault();
+    socket.volatile.emit('removeChannel', modalInfo.item, () => showToastify(t('modal.channelHasRemoved')));
+    onHide();
+  };
+
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={onHide}>
-        <Modal.Title>Удалить канал</Modal.Title>
+        <Modal.Title>{t('modal.removeChannel')}</Modal.Title>
       </Modal.Header>
-
       <Modal.Body>
-        <p className="lead">Уверены?</p>
-        <form onSubmit={onSubmit}>
+        <p className="lead">{t('modal.sure')}</p>
+        <form onSubmit={generateOnSubmit}>
           <FormGroup className="d-flex justify-content-end">
           <Button variant="secondary"
-          className="me-2" onClick={onHide} >Отменить</Button>
+          className="me-2" onClick={onHide}>{t('modal.cancel')}</Button>
           <Button
             variant="danger"
-            onClick={onSubmit}
+            onClick={generateOnSubmit}
             ref={enterRef}
-            >Удалить</Button>
+            >{t('modal.remove')}</Button>
           </FormGroup>
         </form>
       </Modal.Body>
