@@ -28,7 +28,7 @@ const Rename = ({ onHide, modalInfo }) => {
       const { id } = item;
       socket.volatile.emit('renameChannel', { id, name }, (response) => {
         if (response.status === 'ok') {
-          showToastify(t('modal.channelHasRenamed'));
+          showToastify(t('modal.channelHasRenamed'), true);
           setErrorName('');
           onHide();
         } else {

@@ -13,7 +13,7 @@ const Remove = ({ onHide, modalInfo }) => {
 
   const generateOnSubmit = (e) => {
     e.preventDefault();
-    socket.volatile.emit('removeChannel', modalInfo.item, () => showToastify(t('modal.channelHasRemoved')));
+    socket.volatile.emit('removeChannel', modalInfo.item, () => showToastify(t('modal.channelHasRemoved'), true));
     onHide();
   };
 

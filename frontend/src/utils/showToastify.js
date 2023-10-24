@@ -1,3 +1,3 @@
 import { toast } from 'react-toastify';
 
-export default (text) => toast.success(text);
+export default (text, sign) => (sign ? toast.success(text) : toast.error(text));

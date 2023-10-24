@@ -42,5 +42,6 @@ export default {
     },
     channels: 'Каналы',
     messages: 'сообщений',
+    errorLoading: 'Ошибка загрузки данных',
   },
 };

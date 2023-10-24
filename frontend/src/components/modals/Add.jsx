@@ -29,7 +29,7 @@ const Add = ({ onHide }) => {
     const isValid = validateChannelName(channels, name);
     if (isValid === '') {
       socket.volatile.emit('newChannel', values, () => {
-        showToastify(t('modal.channelHasCreated'));
+        showToastify(t('modal.channelHasCreated'), true);
         setErrorName('');
         onHide();
       });

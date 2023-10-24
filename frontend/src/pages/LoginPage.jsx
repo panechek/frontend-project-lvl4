@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import showToastify from '../utils/showToastify.js';
 
 import useAuth from '../hooks/index.jsx';
 import routes from '../routes.js';
@@ -41,11 +42,14 @@ const LoginPage = () => {
         navigate(from);
         // connectSocket();
       } catch (err) {
-        if (err.isAxiosError && err.response.status === 401) {
+        console.log(err);
+        if (err.response.status === 401) {
           setAuthFAiled(true);
           inputRef.current.select();
           return;
         }
+        inputRef.current.select();
+        showToastify(t('errorLoading'), false);
         throw err;
       }
     },
