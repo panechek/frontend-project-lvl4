@@ -18,7 +18,7 @@ const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
- 
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
