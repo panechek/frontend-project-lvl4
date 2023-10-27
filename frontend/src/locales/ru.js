@@ -23,7 +23,7 @@ export default {
       toSignUp: 'Зарегистрироваться',
     },
     navbar: {
-      logo: 'Pan Chat',
+      logo: 'Hexlet Chat',
       goOut: 'Выйти',
     },
     modal: {
