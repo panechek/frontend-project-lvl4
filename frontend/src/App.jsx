@@ -13,7 +13,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import Home from './pages/HomePage.jsx';
 import Navbar from './components/Navbar.jsx';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from './contexts/AuthContext.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
 const PrivateRoute = ({ children }) => {
