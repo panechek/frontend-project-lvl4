@@ -13,9 +13,14 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import Home from './pages/HomePage.jsx';
 import Navbar from './components/Navbar.jsx';
-import { PrivateRoute } from './contexts/AuthContext.jsx';
-
+import { useAuth } from './contexts/AuthContext';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+
+const PrivateRoute = ({ children }) => {
+  const auth = useAuth();
+  const location = useLocation();
+  return auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />;
+};
 
 const App = () => (
     <div className="d-flex flex-column h-100">
