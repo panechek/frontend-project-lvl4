@@ -19,6 +19,7 @@ import NotFoundPage from './pages/NotFoundPage.jsx';
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
   const location = useLocation();
+  console.log(auth.loggedIn);
   return auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />;
 };
 

@@ -4,13 +4,12 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { useLocation, Navigate } from 'react-router-dom';
 
 const AuthContext = createContext({});
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const logIn = () => {
     setLoggedIn(true);
   };
