@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/index.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
 import routes from '../routes.js';
 import avatarImg from '../assets/avatar_signup.jpg';
 

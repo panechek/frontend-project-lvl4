@@ -9,10 +9,10 @@ import {
   Button,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useSocket } from '../../contexts/SocketContext.jsx';
 import showToastify from '../../utils/showToastify.js';
 import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
 import validateChannelName from '../../utils/validateChannelName.js';
-import socket from '../../hooks/socket.io.js';
 
 const Rename = ({ onHide, modalInfo }) => {
   const { item } = modalInfo;
@@ -20,21 +20,19 @@ const Rename = ({ onHide, modalInfo }) => {
   const inputRef = useRef();
   const channels = useSelector(channelsSelectors.selectAll);
   const { t } = useTranslation();
+  const socket = useSocket();
 
   const renameChannel = (values) => {
     const { name } = values;
     const isValid = validateChannelName(channels, name);
     if (isValid === '') {
       const { id } = item;
-      socket.volatile.emit('renameChannel', { id, name }, (response) => {
-        if (response.status === 'ok') {
-          showToastify(t('modal.channelHasRenamed'), true);
-          setErrorName('');
-          onHide();
-        } else {
-          setErrorName(isValid);
-        }
-      });
+      socket.socketOn.renameChannel({ id, name });
+      showToastify(t('modal.channelHasRenamed'), true);
+      setErrorName('');
+      onHide();
+    } else {
+      setErrorName(isValid);
     }
   };
 

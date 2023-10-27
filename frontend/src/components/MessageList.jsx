@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import socket from '../hooks/socket.io.js';
 import Messages from './Messages.jsx';
+import { useSocket } from '../contexts/SocketContext.jsx';
 
 const MessageList = ({
   currentChannel,
@@ -15,6 +15,8 @@ const MessageList = ({
   const inputMessageRef = React.useRef(null);
   const messagesListRef = React.useRef(null);
   const { t } = useTranslation();
+  const socket = useSocket();
+
   React.useEffect(() => {
     inputMessageRef.current.focus();
   }, [messageValue]);
@@ -32,16 +34,11 @@ const MessageList = ({
         value: messageValue,
         channelId: currentChannel,
       };
-      socket.volatile.emit('newMessage', newMessage, (response) => {
-        if (response.status === 'ok') {
-          setIsLoading(false);
-          setMessageValue('');
-          inputMessageRef.current.focus();
-        }
-      });
+      socket.socketOn.newMessage(newMessage);
+      setIsLoading(false);
+      setMessageValue('');
+      inputMessageRef.current.focus();
     }
-    setIsLoading(false);
-    inputMessageRef.current.focus();
   };
   return (
     <div className="col p-0 h-100">

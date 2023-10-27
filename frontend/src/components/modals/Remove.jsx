@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react';
 import { Modal, FormGroup, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useSocket } from '../../contexts/SocketContext.jsx';
 import showToastify from '../../utils/showToastify';
-import socket from '../../hooks/socket.io';
 
 const Remove = ({ onHide, modalInfo }) => {
   const enterRef = React.useRef(null);
   const { t } = useTranslation();
+  const socket = useSocket();
+
   React.useEffect(() => {
     enterRef.current.focus();
   }, []);
 
   const generateOnSubmit = (e) => {
     e.preventDefault();
-    socket.volatile.emit('removeChannel', modalInfo.item, () => showToastify(t('modal.channelHasRemoved'), true));
+    socket.socketOn.removeChannel(modalInfo.item);
+    showToastify(t('modal.channelHasRemoved'), true);
     onHide();
   };
 

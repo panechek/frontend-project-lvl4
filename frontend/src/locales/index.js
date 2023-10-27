@@ -8,11 +8,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'ru',
     fallbackLng: 'ru',
-    interpolation: {
-      escapeValue: false,
-    },
   });
 
 export default i18n;

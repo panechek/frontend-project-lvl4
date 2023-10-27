@@ -14,7 +14,6 @@ import fetchData from '../redux/fetchDataAsyncThunk.js';
 
 import ChannelList from '../components/ChannelList.jsx';
 import MessageList from '../components/MessageList.jsx';
-import socket from '../hooks/socket.io.js';
 
 const renderModal = ({ modalInfo, hideModal }) => {
   if (!modalInfo.type) {
@@ -46,11 +45,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchData());
-    socket.on('connect', () => console.log(socket.id));
-    socket.on('newChannel', (channel) => dispatch(addChannel(channel)));
-    socket.on('removeChannel', ({ id }) => dispatch(removeChannel(id)));
-    socket.on('renameChannel', ({ id, name }) => dispatch(renameChannel({ id, changes: { name } })));
-    socket.on('newMessage', (message) => dispatch(addMessage(message)));
   }, []);
 
   const changeChannel = (id) => dispatch(changeCurrentChannel(id));

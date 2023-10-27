@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import showToastify from '../utils/showToastify.js';
 
-import useAuth from '../hooks/index.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
 import routes from '../routes.js';
 import avatarImg from '../assets/avatar.jpg';
 

@@ -1,7 +1,7 @@
 import { Button, Navbar as NavbarBootstrap } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import useAuth from '../hooks/index.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
 const Navbar = () => {
   const { t } = useTranslation();

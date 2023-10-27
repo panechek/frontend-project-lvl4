@@ -13,12 +13,13 @@ import { useTranslation } from 'react-i18next';
 import showToastify from '../../utils/showToastify.js';
 import { selectors as channelsSelectors } from '../../redux/channelsSlice.js';
 import validateChannelName from '../../utils/validateChannelName.js';
-import socket from '../../hooks/socket.io.js';
+import { useSocket } from '../../contexts/SocketContext.jsx';
 
 const Add = ({ onHide }) => {
   const [errorName, setErrorName] = React.useState('');
   const channels = useSelector(channelsSelectors.selectAll);
   const inputRef = React.useRef();
+  const socket = useSocket();
   const { t } = useTranslation();
   React.useEffect(() => {
     inputRef.current.focus();
@@ -28,11 +29,10 @@ const Add = ({ onHide }) => {
     const { name } = values;
     const isValid = validateChannelName(channels, name);
     if (isValid === '') {
-      socket.volatile.emit('newChannel', values, () => {
-        showToastify(t('modal.channelHasCreated'), true);
-        setErrorName('');
-        onHide();
-      });
+      socket.socketOn.newChannel(values);
+      showToastify(t('modal.channelHasCreated'), true);
+      setErrorName('');
+      onHide();
     } else {
       setErrorName(isValid);
     }
