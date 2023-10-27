@@ -135,7 +135,7 @@ const SignupPage = () => {
                                 type="submit"
                                 className='w-100'
                                 variant="outline-primary">
-                                {t('forms.toSignup')}
+                                {t('forms.toSignUp')}
                             </Button>
                         </Form>
                     </div>
