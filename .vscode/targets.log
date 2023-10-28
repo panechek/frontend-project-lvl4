@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Wed Oct 18 12:10:12 2023
+
+# Make data base, printed on Sat Oct 28 21:03:28 2023
 
 # Variables
 
@@ -16,7 +19,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
 VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
+ 
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -36,15 +42,17 @@ MAKEFILE_LIST :=  Makefile
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_CWD = /
+VSCODE_CWD = /Users/annamerkulova
 # environment
 PATH = /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+# environment
+LaunchInstanceID = 1FF43E4B-63EC-4082-A71B-0FD86BC8459E
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.F43Zza7u5P/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.0RKHfxdC3u/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -59,6 +67,8 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 HOME = /Users/annamerkulova
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = /Users/annamerkulova/Library/Application Support/Code/CachedData/f1b07bd25dfad64b0167beb15359ae573aecd2cc
 # environment
@@ -76,17 +86,21 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 1
+SHLVL = 3
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = annamerkulova
 # makefile
 .DEFAULT_GOAL := start-frontend
+# environment
+TERM_SESSION_ID = EBD7DE24-F463-46A6-9B97-5837EDA41C1F
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# environment
+TERM_PROGRAM = Apple_Terminal
 # default
 .VARIABLES := 
 # environment
@@ -104,7 +118,10 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.43403916.43403922
+TERM_PROGRAM_VERSION = 447
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.43403916.43403922.C419C510-E60B-4EF5-BC67-9DD7BD84610A
+ 
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -119,6 +136,8 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a3
 # automatic
 ^F = $(notdir $^)
 # default
@@ -130,9 +149,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3706
+TERM = xterm-256color
+# environment
+VSCODE_PID = 2278
 # variable set hash-table stats:
-# Load=60/1024=6%, Rehash=0, Collisions=1/84=1%
+# Load=68/1024=7%, Rehash=0, Collisions=1/92=1%
 
 # Pattern-specific Variable Values
 
@@ -200,6 +221,7 @@ start-backend:
 
 start-frontend:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 2):
@@ -235,8 +257,6 @@ deploy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Oct 18 12:10:12 2023
+# Finished Make data base on Sat Oct 28 21:03:28 2023
 
  
-make: *** No rule to make target `all'.  Stop.
-

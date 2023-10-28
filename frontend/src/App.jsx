@@ -24,8 +24,8 @@ const PrivateRoute = ({ children }) => {
 };
 
 const App = () => (
-    <div className="d-flex flex-column h-100">
       <Router>
+        <div className="d-flex flex-column h-100">
         <Navbar />
         <Routes>
           <Route path="/" element={
@@ -38,9 +38,9 @@ const App = () => (
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
+        <ToastContainer />
+        </div>
       </Router>
-    <ToastContainer />
-     </div>
 );
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
@@ -112,9 +112,9 @@ const LoginPage = () => {
                             <span>
                               {t('forms.noLogin')}
                             </span>
-                            <a href="/signup">
+                            <Link to="/signup">
                               {t('forms.signup')}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
