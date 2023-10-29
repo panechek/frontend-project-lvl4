@@ -70,14 +70,14 @@ const LoginPage = () => {
                     name='username'
                     autoComplete='username'
                     required
-                    placeholder="Ваш ник"
+                    placeholder={t('forms.yourNick')}
                     id="username"
                     onChange={formik.handleChange}
                     value={formik.values.username}
                     isInvalid={authFailed}
                     ref={inputRef}
                   />
-                  <Form.Label htmlFor="username">{t('forms.username')}</Form.Label>
+                  <Form.Label htmlFor="username">{t('forms.yourNick')}</Form.Label>
                   </Form.Floating>
                   <Form.Floating className='mb-4'>
                     <Form.Control

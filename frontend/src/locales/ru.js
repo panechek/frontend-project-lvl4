@@ -18,6 +18,7 @@ export default {
       matchPassword: 'Пароли должны совпадать',
       loginHasBeen: 'Пользователь уже существует',
       username: 'Имя пользователя',
+      yourNick: 'Ваш ник',
       password: 'Пароль',
       toMatchPassword: 'Подтвердите пароль',
       toSignUp: 'Зарегистрироваться',
