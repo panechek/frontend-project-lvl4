@@ -40,7 +40,6 @@ const LoginPage = () => {
         auth.logIn();
         const { from } = location.state || { from: { pathname: '/' } };
         navigate(from);
-        // connectSocket();
       } catch (err) {
         console.log(err);
         if (err.response.status === 401) {
@@ -65,62 +64,55 @@ const LoginPage = () => {
                 <img src={avatarImg} className='rounded-circle' alt="Войти" />
               </div>
               <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
-                <h1 className='test-center mb-4'>{t('forms.login')}</h1>
-                  <Form.Group>
-                    <FloatingLabel
-                      htmlFor="username" label="Ваш ник">
-                                    <Form.Control
-                                    className='mb-3'
-                                        onChange={formik.handleChange}
-                                        value={formik.values.username}
-                                        placeholder="Ваш ник"
-                                        name="username"
-                                        id="username"
-                                        isInvalid={authFailed}
-                                        required
-                                        ref={inputRef}
-                                    />
-                                </FloatingLabel>
-                            </Form.Group>
-                            <Form.Group>
-                                <FloatingLabel
-                                    htmlFor="password"
-                                    label="Пароль"
-                                    >
-                                    <Form.Control
-                                      className='mb-4'
-                                      type="password"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.password}
-                                        placeholder="Пароль"
-                                        name="password"
-                                        id="password"
-                                        autoComplete="current-password"
-                                        isInvalid={authFailed}
-                                        required
-                                    />
-                                <Form.Control.Feedback type="invalid" tooltip>
-                                  {t('forms.wrongData')}
-                                    </Form.Control.Feedback>
-                                    </FloatingLabel>
-                            </Form.Group>
-                            <Button type="submit" className='w-100 mb-3 btn btn-outline-primary' variant="outline-primary">{t('forms.login')}</Button>
-                        </Form>
-                    </div>
-                    <div className='card-footer p-4'>
-                        <div className="text-center">
-                            <span>
-                              {t('forms.noLogin')}
-                            </span>
-                            <Link to="/signup">
-                              {t('forms.signup')}
-                            </Link>
-                        </div>
-                    </div>
-                </div>
+                <h1 className='text-center mb-4'>{t('forms.login')}</h1>
+                <Form.Floating className='mb-3'>
+                  <Form.Control
+                    name='username'
+                    autoComplete='username'
+                    required
+                    placeholder="Ваш ник"
+                    id="username"
+                    onChange={formik.handleChange}
+                    value={formik.values.username}
+                    isInvalid={authFailed}
+                    ref={inputRef}
+                  />
+                  <Form.Label htmlFor="username">{t('forms.username')}</Form.Label>
+                  </Form.Floating>
+                  <Form.Floating className='mb-4'>
+                    <Form.Control
+                      name="password"
+                      autoComplete="current-password"
+                      required
+                      placeholder="Пароль"
+                      type="password"
+                      id="password"
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                      isInvalid={authFailed}
+                    />
+                    <Form.Label htmlFor="password">{t('forms.password')}</Form.Label>
+                    <Form.Control.Feedback type="invalid" tooltip>
+                      {t('forms.wrongData')}
+                    </Form.Control.Feedback>
+                  </Form.Floating>
+                  <Button type="submit" className='w-100 mb-3 btn btn-outline-primary' variant="outline-primary">{t('forms.login')}</Button>
+                </Form>
+              </div>
+              <div className='card-footer p-4'>
+              <div className="text-center">
+                <span>
+                  {t('forms.noLogin')}
+                </span>
+                <Link to="/signup">
+                  {t('forms.signup')}
+                </Link>
+              </div>
             </div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>
   );
 };
 

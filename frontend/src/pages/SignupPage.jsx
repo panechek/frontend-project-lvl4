@@ -71,7 +71,7 @@ const SignupPage = () => {
                         <Form
                             onSubmit={formik.handleSubmit}
                             className="w-50">
-                            <h1 className='test-center mb-4'>{t('forms.signup')}</h1>
+                            <h1 className='text-center mb-4'>{t('forms.signup')}</h1>
                                 <Form.Floating
                                     className='mb-3'>
                                     <Form.Control
