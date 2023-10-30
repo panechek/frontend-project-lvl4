@@ -17,8 +17,8 @@ const channelsSlice = createSlice({
   initialState,
   reducers: {
     changeCurrentChannel: (state, action) => {
-      const { currentChannel } = state;
-      currentChannel = action.payload;
+      const storage = state;
+      storage.currentChannel = action.payload;
     },
     addChannel: (state, action) => {
       channelsAdapter.addOne(state, action);
