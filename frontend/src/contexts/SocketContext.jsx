@@ -18,7 +18,7 @@ const SocketProvider = ({ children, socket }) => {
     socket.on('removeChannel', ({ id }) => dispatch(removeChannel(id)));
     socket.on('renameChannel', ({ id, name }) => dispatch(renameChannel({ id, changes: { name } })));
     socket.on('newMessage', (message) => dispatch(addMessage(message)));
-  }, []);
+  }, [dispatch, socket]);
   const socketOn = useMemo(() => ({
     newChannel: (values) => socket.volatile.emit('newChannel', values),
     removeChannel: (value) => socket.volatile.emit('removeChannel', value),
@@ -27,9 +27,9 @@ const SocketProvider = ({ children, socket }) => {
   }), [socket]);
   return (
     <SocketContext.Provider
-      value={{
+      value={useMemo(() => ({
         socketOn,
-      }}
+      }), [socketOn])}
     >
       {children}
     </SocketContext.Provider>

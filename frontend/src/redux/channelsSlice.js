@@ -22,12 +22,14 @@ const channelsSlice = createSlice({
     },
     addChannel: (state, action) => {
       channelsAdapter.addOne(state, action);
-      state.currentChannel = action.payload.id;
+      const storage = state;
+      storage.currentChannel = action.payload.id;
     },
     renameChannel: channelsAdapter.updateOne,
     removeChannel: (state, { payload }) => {
       channelsAdapter.removeOne(state, payload);
-      state.currentChannel = 1;
+      const storage = state;
+      storage.currentChannel = 1;
     },
   },
   extraReducers: (builder) => {
@@ -35,14 +37,17 @@ const channelsSlice = createSlice({
       .addCase(fetchData.fulfilled, (state, action) => {
         const { channels, currentChannelId } = action.payload;
         channelsAdapter.setAll(state, channels);
-        state.currentChannel = currentChannelId;
-        state.loading = false;
+        const storage = state;
+        storage.currentChannel = currentChannelId;
+        storage.loading = false;
       })
       .addCase(fetchData.pending, (state) => {
-        state.loading = true;
+        const storage = state;
+        storage.loading = true;
       })
       .addCase(fetchData.rejected, (state) => {
-        state.loading = false;
+        const storage = state;
+        storage.loading = false;
       });
   },
 });

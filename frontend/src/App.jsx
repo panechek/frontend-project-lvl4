@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,23 +24,25 @@ const PrivateRoute = ({ children }) => {
 };
 
 const App = () => (
-      <Router>
-        <div className="d-flex flex-column h-100">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={
-              <PrivateRoute>
-                <Home />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-        </Routes>
-        <ToastContainer />
-        </div>
-      </Router>
+  <Router>
+    <div className="d-flex flex-column h-100">
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={(
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          )}
+        />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+      <ToastContainer />
+    </div>
+  </Router>
 );
 
 export default App;

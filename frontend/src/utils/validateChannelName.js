@@ -6,5 +6,5 @@ export default function validateChannelName(channels, value) {
   if (findChannel) {
     return 'Change Name';
   }
-  return error;
-};
+  return '';
+}

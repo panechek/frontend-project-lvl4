@@ -4,11 +4,7 @@ import getModal from '../components/modals/index.js';
 import {
   selectors as channelsSelectors,
   changeCurrentChannel,
-  removeChannel,
-  renameChannel,
-  addChannel,
 } from '../redux/channelsSlice.js';
-import { addMessage } from '../redux/messagesSlice.js';
 
 import fetchData from '../redux/fetchDataAsyncThunk.js';
 
@@ -45,7 +41,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchData());
-  }, []);
+  }, [dispatch]);
 
   const changeChannel = (id) => dispatch(changeCurrentChannel(id));
 

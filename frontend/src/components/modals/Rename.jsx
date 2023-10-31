@@ -64,19 +64,19 @@ const Rename = ({ onHide, modalInfo }) => {
               className="mb-2"
               isInvalid={errorName !== ''}
             />
-        <FormLabel htmlFor="name" className="visually-hidden">
-               {t('modal.channelName')}
+            <FormLabel htmlFor="name" className="visually-hidden">
+              {t('modal.channelName')}
             </FormLabel>
             <FormControl.Feedback type="invalid">{errorName}</FormControl.Feedback>
           </FormGroup>
           <div className="d-flex justify-content-end">
-              <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
-                {t('channel.cancel')}
-              </Button>
-              <Button type="submit" variant="primary">
-                {t('modal.send')}
-              </Button>
-              </div>
+            <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
+              {t('channel.cancel')}
+            </Button>
+            <Button type="submit" variant="primary">
+              {t('modal.send')}
+            </Button>
+          </div>
         </form>
       </Modal.Body>
     </Modal>

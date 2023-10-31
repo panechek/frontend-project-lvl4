@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -56,19 +56,19 @@ const LoginPage = () => {
 
   return (
     <div className="container-fluid h-100">
-      <div className='row justify-content-center align-content-center h-100'>
-        <div className='col-12 col-md-8 col-xxl-6'>
-          <div className='card shadow-sm'>
-            <div className='card-body row p-5'>
+      <div className="row justify-content-center align-content-center h-100">
+        <div className="col-12 col-md-8 col-xxl-6">
+          <div className="card shadow-sm">
+            <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img src={avatarImg} className='rounded-circle' alt="Войти" />
+                <img src={avatarImg} className="rounded-circle" alt="Войти" />
               </div>
               <Form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
-                <h1 className='text-center mb-4'>{t('forms.login')}</h1>
-                <Form.Floating className='mb-3'>
+                <h1 className="text-center mb-4">{t('forms.login')}</h1>
+                <Form.Floating className="mb-3">
                   <Form.Control
-                    name='username'
-                    autoComplete='username'
+                    name="username"
+                    autoComplete="username"
                     required
                     placeholder={t('forms.yourNick')}
                     id="username"
@@ -78,31 +78,34 @@ const LoginPage = () => {
                     ref={inputRef}
                   />
                   <Form.Label htmlFor="username">{t('forms.yourNick')}</Form.Label>
-                  </Form.Floating>
-                  <Form.Floating className='mb-4'>
-                    <Form.Control
-                      name="password"
-                      autoComplete="current-password"
-                      required
-                      placeholder="Пароль"
-                      type="password"
-                      id="password"
-                      onChange={formik.handleChange}
-                      value={formik.values.password}
-                      isInvalid={authFailed}
-                    />
-                    <Form.Label htmlFor="password">{t('forms.password')}</Form.Label>
-                    <Form.Control.Feedback type="invalid" tooltip>
-                      {t('forms.wrongData')}
-                    </Form.Control.Feedback>
-                  </Form.Floating>
-                  <Button type="submit" className='w-100 mb-3 btn btn-outline-primary' variant="outline-primary">{t('forms.login')}</Button>
-                </Form>
-              </div>
-              <div className='card-footer p-4'>
+                </Form.Floating>
+                <Form.Floating className="mb-4">
+                  <Form.Control
+                    name="password"
+                    autoComplete="current-password"
+                    required
+                    placeholder="Пароль"
+                    type="password"
+                    id="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    isInvalid={authFailed}
+                  />
+                  <Form.Label htmlFor="password">{t('forms.password')}</Form.Label>
+                  <Form.Control.Feedback type="invalid" tooltip>
+                    {t('forms.wrongData')}
+                  </Form.Control.Feedback>
+                </Form.Floating>
+                <Button type="submit" className="w-100 mb-3 btn btn-outline-primary" variant="outline-primary">
+                  {t('forms.login')}
+                </Button>
+              </Form>
+            </div>
+            <div className="card-footer p-4">
               <div className="text-center">
                 <span>
                   {t('forms.noLogin')}
+                  &nbsp;
                 </span>
                 <Link to="/signup">
                   {t('forms.signup')}

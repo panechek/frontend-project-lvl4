@@ -11,14 +11,15 @@ const Messages = ({ messages }) => {
 
   filter.list();
   return (
-      <>
-        {messages.map((message) => (
-          <div key={message.id} className='text-break mb-2'>
-            <b>{message.username}</b>
-            : {filter.clean(message.value)}
-          </div>
-        ))}
-      </>
+    <>
+      {messages.map((message) => (
+        <div key={message.id} className="text-break mb-2">
+          <b>{message.username}</b>
+          :
+          {filter.clean(message.value)}
+        </div>
+      ))}
+    </>
   );
 };
 

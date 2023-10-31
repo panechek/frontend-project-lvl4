@@ -47,7 +47,7 @@ const Add = ({ onHide }) => {
 
       <Modal.Body>
         <form onSubmit={f.handleSubmit}>
-          <FormGroup >
+          <FormGroup>
             <FormControl
               ref={inputRef}
               onChange={f.handleChange}
@@ -64,13 +64,21 @@ const Add = ({ onHide }) => {
             <FormControl.Feedback type="invalid">{errorName}</FormControl.Feedback>
           </FormGroup>
           <div className="d-flex justify-content-end">
-              <Button type="button" variant="secondary" className="me-2" onClick={onHide}>
-                {t('modal.cancel')}
-              </Button>
-              <Button type="submit" variant="primary">
-                {t('modal.send')}
-              </Button>
-            </div>
+            <Button
+              type="button"
+              variant="secondary"
+              className="me-2"
+              onClick={onHide}
+            >
+              {t('modal.cancel')}
+            </Button>
+            <Button
+              type="submit"
+              variant="primary"
+            >
+              {t('modal.send')}
+            </Button>
+          </div>
         </form>
       </Modal.Body>
     </Modal>
